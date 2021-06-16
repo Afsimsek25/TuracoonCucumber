@@ -22,7 +22,12 @@ public class Parent {
     public void clickFunction(WebElement element){
         waitUntilClickable(element);  //wait until element be clickable
         scrollToElement(element);     //scroll to element
-        element.click();              //click.
+        try {
+            element.click();              //click.
+        }catch (Exception e){
+            JavascriptExecutor executor = (JavascriptExecutor) BaseDriver.getDriver();
+            executor.executeScript("arguments[0].click();", element);
+        }
     }
     public void waitUntilClickable(WebElement element) {
         wait.until(ExpectedConditions.visibilityOf(element));

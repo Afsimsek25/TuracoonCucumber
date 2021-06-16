@@ -3,7 +3,77 @@
   <component name="issues">
     <option name="index">
       <map>
+        <entry key="/Dummy.txt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="/a.dummy">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/AppData/Local/JetBrains/IdeaIC2021.1/temp-testng-customsuite.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../Cucumber/src/test/java/FeatureFiles/_01_Login.feature">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../Cucumber/src/test/java/Pages/DialogContent.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../Cucumber/src/test/java/Pages/LeftNav.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../Cucumber/src/test/java/Pages/Parent.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../Cucumber/src/test/java/StepDefinitions/_01_LoginSteps.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../Cucumber/src/test/java/StepDefinitions/_02_CountryStep.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/pom.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/test/java/FeatureFiles/Logins/LoginWithEmail.Feature">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/test/java/FeatureFiles/Logins/LoginWithFacebook.Feature">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/test/java/FeatureFiles/Logins/Registers/d.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/test/java/FeatureFiles/d.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/test/java/Pages/Login.java">
           <value>
             <set />
           </value>
@@ -19,6 +89,21 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/test/java/StepDefinitions/Hooks/Hooks.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/test/java/StepDefinitions/LoginSteps.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/test/java/StepDefinitions/LoginWithFacebookSteps.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/test/java/StepDefinitions/LoginsSteps/LoginWithFacebookSteps.java">
           <value>
             <set />
           </value>
