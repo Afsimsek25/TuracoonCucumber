@@ -1,7 +1,9 @@
-package StepDefinitions.LoginsSteps;
+package StepDefinitions.LoginPage;
 
-import Pages.Login;
+import Pages.LoginPage;
 import Utilities.BaseDriver;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -9,7 +11,7 @@ import org.testng.Assert;
 import java.util.Set;
 
 public class LoginsSteps {
-    Login login = new Login();
+    LoginPage login = new LoginPage();
     WebDriverWait wait = new WebDriverWait(BaseDriver.getDriver(),20);
     String loginPageID;
 
@@ -33,7 +35,7 @@ public class LoginsSteps {
     @cucumber.api.java.en.Then("^User should login successfully$")
     public void userShouldLoginSuccessfully() {
         wait.until(ExpectedConditions.urlContains("https://tipbaks.com/en/my-reservations"));
-        Assert.assertEquals("https://tipbaks.com/en/my-reservations",BaseDriver.getDriver().getCurrentUrl(),"Failed Login");
+        Assert.assertEquals("https://tipbaks.com/en/my-reservations",BaseDriver.getDriver().getCurrentUrl(),"Failed LoginPage");
     }
 
     @cucumber.api.java.en.When("^Select Facebook option and switch window$")

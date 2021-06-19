@@ -8,6 +8,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import java.util.List;
+
 public class Parent {
     WebDriverWait wait;
     JavascriptExecutor js;
@@ -44,6 +46,10 @@ public class Parent {
         wait.until(ExpectedConditions.textToBePresentInElement(webElement, text));
         Assert.assertTrue(webElement.getText().toLowerCase().contains(text.toLowerCase()));
     }
+    public void verifyElement(WebElement webElement) {
+        wait.until(ExpectedConditions.visibilityOf(webElement));
+        Assert.assertTrue(webElement.isDisplayed());
+    }
     public static void delay(int second)
     {
         try {
@@ -54,5 +60,15 @@ public class Parent {
     }
     public void waitUntilListLessThan(String locator) {
         wait.until(ExpectedConditions.numberOfElementsToBeLessThan(By.xpath(locator),2));
+    }
+
+    public void languageAssert(List<WebElement> list, WebElement langSelector){
+        for (int i = 0; i <list.size(); i++) {
+            clickFunction(langSelector);
+            clickFunction(list.get(i));
+
+            delay(3);
+            Assert.assertTrue(BaseDriver.getDriver().findElement(By.cssSelector("a[href*='register'][data-trc='Subscription Page']")).isDisplayed());
+        }
     }
 }
