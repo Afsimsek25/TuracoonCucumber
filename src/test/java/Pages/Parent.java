@@ -1,10 +1,12 @@
 package Pages;
 
 import Utilities.BaseDriver;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 public class Parent {
     WebDriverWait wait;
@@ -38,6 +40,10 @@ public class Parent {
     public void waitUntilVisible(WebElement element) {
         wait.until(ExpectedConditions.elementToBeClickable(element));
     }
+    public void verifyElementContainsText(WebElement webElement, String text) {
+        wait.until(ExpectedConditions.textToBePresentInElement(webElement, text));
+        Assert.assertTrue(webElement.getText().toLowerCase().contains(text.toLowerCase()));
+    }
     public static void delay(int second)
     {
         try {
@@ -45,5 +51,8 @@ public class Parent {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+    public void waitUntilListLessThan(String locator) {
+        wait.until(ExpectedConditions.numberOfElementsToBeLessThan(By.xpath(locator),2));
     }
 }
