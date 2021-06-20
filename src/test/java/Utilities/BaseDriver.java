@@ -14,6 +14,7 @@ public class BaseDriver {
         {
             WebDriverManager.chromedriver().setup();
             driver = new ChromeDriver();
+            driver.manage().window().maximize();
         }
         return driver;
     }

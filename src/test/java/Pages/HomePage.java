@@ -12,6 +12,8 @@ public class HomePage extends Parent{
     public HomePage() {
         PageFactory.initElements(BaseDriver.getDriver(), this);
     }
+    @FindBy(css = "a[href*='login']")
+    private WebElement linkLogin;
 
     @FindBy(css = "a[href*='register'][data-trc='Subscription Page']")
     private WebElement btnCreateAFreeAccount;
@@ -27,12 +29,46 @@ public class HomePage extends Parent{
     private WebElement btnArabic;
     @FindBy(css = "div[class='topbar d-none d-sm-block'] div[class='dropdown text-center'] a[href*='ir']")
     private WebElement btnFarsi;
-    @FindBy(xpath = "(//div[@class='dropdown-content'])[1]/p")
-    private List<WebElement> languageList;
 
+    @FindBy(linkText = "Pricing")
+    private WebElement btnPricingPage;
 
-    public List<WebElement> getLanguageList() {
-        return languageList;
+    @FindBy(linkText = "How It Works")
+    private WebElement btnHowItWorks;
+
+    @FindBy(linkText = "F.A.Q.")
+    private WebElement btnFAQ;
+
+    @FindBy(linkText = "Sample Lessons")
+    private WebElement btnSampleLessons;
+
+    @FindBy(linkText = "Tutors")
+    private WebElement btnTutors;
+
+    @FindBy(linkText = "Blog")
+    private WebElement btnBlog;
+
+    @FindBy(linkText = "Companies")
+    private WebElement btnCompanies;
+
+    public WebElement getLinkLogin() {
+        return linkLogin;
+    }
+
+    public WebElement getBtnCreateAFreeAccount() {
+        return btnCreateAFreeAccount;
+    }
+
+    public WebElement getRegisterForm() {
+        return registerForm;
+    }
+
+    public WebElement getLanguageSelector() {
+        return languageSelector;
+    }
+
+    public WebElement getBtnTurkish() {
+        return btnTurkish;
     }
 
     public WebElement getBtnEnglish() {
@@ -47,18 +83,31 @@ public class HomePage extends Parent{
         return btnFarsi;
     }
 
-    public WebElement getBtnTurkish() {
-        return btnTurkish;
+    public WebElement getBtnPricingPage() {
+        return btnPricingPage;
     }
 
-    public WebElement getLanguageSelector() {
-        return languageSelector;
+    public WebElement getBtnHowItWorks() {
+        return btnHowItWorks;
     }
 
-    public WebElement getRegisterForm() {
-        return registerForm;
+    public WebElement getBtnFAQ() {
+        return btnFAQ;
     }
-    public WebElement getBtnCreateAFreeAccount() {
-        return btnCreateAFreeAccount;
+
+    public WebElement getBtnSampleLessons() {
+        return btnSampleLessons;
+    }
+
+    public WebElement getBtnTutors() {
+        return btnTutors;
+    }
+
+    public WebElement getBtnBlog() {
+        return btnBlog;
+    }
+
+    public WebElement getBtnCompanies() {
+        return btnCompanies;
     }
 }

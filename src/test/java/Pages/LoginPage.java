@@ -11,8 +11,6 @@ public class LoginPage extends Parent{
         PageFactory.initElements(BaseDriver.getDriver(), this);
     }
 
-    @FindBy(css = "a[href*='login']")
-    private WebElement linkLogin;
     @FindBy(id = "email")
     private WebElement inputEmail;
     @FindBy(id = "password")
@@ -41,11 +39,6 @@ public class LoginPage extends Parent{
     private WebElement nextGoogle;
     @FindBy(css = "input[type='password']")
     private WebElement inputPasswordGoogle;
-
-
-    public WebElement getLinkLogin() {
-        return linkLogin;
-    }
 
     public WebElement getInputEmail() {
         return inputEmail;

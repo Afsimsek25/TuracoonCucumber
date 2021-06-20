@@ -27,7 +27,7 @@ public class Parent {
         waitUntilClickable(element);  //wait until element be clickable
         scrollToElement(element);     //scroll to element
         try {
-            element.click();              //click.
+            element.click();          //click.
         }catch (Exception e){
             JavascriptExecutor executor = (JavascriptExecutor) BaseDriver.getDriver();
             executor.executeScript("arguments[0].click();", element);
@@ -46,11 +46,11 @@ public class Parent {
         wait.until(ExpectedConditions.textToBePresentInElement(webElement, text));
         Assert.assertTrue(webElement.getText().toLowerCase().contains(text.toLowerCase()));
     }
-    public void verifyElement(WebElement webElement) {
+    public void verifyElement(WebElement webElement) { /** Element is Displayed **/
         wait.until(ExpectedConditions.visibilityOf(webElement));
         Assert.assertTrue(webElement.isDisplayed());
     }
-    public static void delay(int second)
+    public static void delay(int second) /** Be careful! Using Thread.sleep is the wrong approach! **/
     {
         try {
             Thread.sleep(1000*second);
@@ -58,17 +58,18 @@ public class Parent {
             e.printStackTrace();
         }
     }
-    public void waitUntilListLessThan(String locator) {
-        wait.until(ExpectedConditions.numberOfElementsToBeLessThan(By.xpath(locator),2));
+    public void numberOfElements(List<WebElement> element,int piece) { /** We check if the list of elements is the number we went...**/
+        wait.until(ExpectedConditions.visibilityOfAllElements(element));
+        Assert.assertEquals(element.size(),piece);
     }
 
-    public void languageAssert(List<WebElement> list, WebElement langSelector){
-        for (int i = 0; i <list.size(); i++) {
-            clickFunction(langSelector);
-            clickFunction(list.get(i));
-
-            delay(3);
-            Assert.assertTrue(BaseDriver.getDriver().findElement(By.cssSelector("a[href*='register'][data-trc='Subscription Page']")).isDisplayed());
-        }
+    public void elementsToBeMoreThan(String locator, int piece){ /** The number of teachers should not be less than "piece"...**/
+        wait.until(ExpectedConditions.visibilityOfAllElements());
+        wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(By.xpath(locator),piece));
     }
+    public void elementsToBeMoreThan(List<WebElement> element, String locator, int piece){ /** The number of teachers should not be less than "piece"...**/
+        wait.until(ExpectedConditions.visibilityOfAllElements(element));
+        wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(By.xpath(locator),piece));
+    }
+
 }
