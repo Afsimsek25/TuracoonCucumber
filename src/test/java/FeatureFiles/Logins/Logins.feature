@@ -13,7 +13,7 @@ Feature: Login Functionality
 
   Scenario: Login with facebook
     When Select Facebook option and switch window
-    When Enter email and password and click login button
+    And Enter email and password and click login button
     Then User should login successfully
 
 

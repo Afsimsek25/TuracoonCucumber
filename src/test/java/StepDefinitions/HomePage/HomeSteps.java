@@ -1,10 +1,8 @@
 package StepDefinitions.HomePage;
 
 import Pages.*;
-import Utilities.BaseDriver;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import org.openqa.selenium.By;
 
 public class HomeSteps {
     HomePage homePage = new HomePage();
@@ -15,6 +13,8 @@ public class HomeSteps {
     TutorsPage tutorsPage = new TutorsPage();
     BlogPage blogPage= new BlogPage();
     CompaniesPage companiesPage = new CompaniesPage();
+
+    // TODO Bu yapı doğru değil. Loose Coupling için "Bağımlılık enjeksiyonu" kullanmak gerekiyor...
 
     @When("^Click Create Free Account Buttons$")
     public void clickCreateFreeAccountButtons() {
