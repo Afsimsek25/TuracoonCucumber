@@ -47,7 +47,6 @@
             <version>1.7.21</version>
             <scope>test</scope>
         </dependency>
-
     </dependencies>
 
 </project>

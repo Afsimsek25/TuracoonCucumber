@@ -14,6 +14,8 @@ public class HomeSteps {
     BlogPage blogPage= new BlogPage();
     CompaniesPage companiesPage = new CompaniesPage();
 
+
+
     // TODO Bu yapı doğru değil. Loose Coupling için "Bağımlılık enjeksiyonu" kullanmak gerekiyor...
 
     @When("^Click Create Free Account Buttons$")

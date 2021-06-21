@@ -12,8 +12,11 @@ public class HomePage extends Parent{
     public HomePage() {
         PageFactory.initElements(BaseDriver.getDriver(), this);
     }
-    @FindBy(css = "a[href*='login']")
+
+    @FindBy(css = "a[class='auth-option trc_ViewConent'][data-trc*='Login']")
     private WebElement linkLogin;
+    @FindBy(css = "a[class='auth-option trc_ViewConent'][data-trc*='Register']")
+    private WebElement linkSignup;
 
     @FindBy(css = "a[href*='register'][data-trc='Subscription Page']")
     private WebElement btnCreateAFreeAccount;
@@ -53,6 +56,10 @@ public class HomePage extends Parent{
 
     public WebElement getLinkLogin() {
         return linkLogin;
+    }
+
+    public WebElement getLinkSignup() {
+        return linkSignup;
     }
 
     public WebElement getBtnCreateAFreeAccount() {

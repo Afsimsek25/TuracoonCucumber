@@ -1,7 +1,7 @@
 package StepDefinitions.LoginPage;
 
 import Pages.HomePage;
-import Pages.LoginPage;
+import Pages.LoginRegisterPopUp;
 import Utilities.BaseDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -10,7 +10,7 @@ import org.testng.Assert;
 import java.util.Set;
 
 public class LoginsSteps {
-    LoginPage login = new LoginPage();
+    LoginRegisterPopUp login = new LoginRegisterPopUp();
     HomePage homePage= new HomePage();
 
 
@@ -29,15 +29,15 @@ public class LoginsSteps {
 
     @cucumber.api.java.en.When("^Enter username and password and click login button$")
     public void enterUsernameAndPasswordAndClickLoginButton() {
-        login.sendKeysFunction(login.getInputEmail(),"first@autotest.com");
-        login.sendKeysFunction(login.getInputPassword(),"Asimsek25");
-        login.clickFunction(login.getBtnLogin());
+        login.sendKeysFunction(login.getInputLoginEmail(),"first@autotest.com");
+        login.sendKeysFunction(login.getInputLoginPassword(),"Asimsek25");
+        login.clickFunction(login.getButtonLogin());
     }
 
     @cucumber.api.java.en.Then("^User should login successfully$") //TODO needs to be repaired
     public void userShouldLoginSuccessfully() {
         wait.until(ExpectedConditions.urlContains("https://tipbaks.com/en/my-reservations"));
-        Assert.assertEquals("https://tipbaks.com/en/my-reservations",BaseDriver.getDriver().getCurrentUrl(),"Failed LoginPage");
+        Assert.assertEquals("https://tipbaks.com/en/my-reservations",BaseDriver.getDriver().getCurrentUrl(),"Failed LoginRegisterPopUp");
     }
 
     @cucumber.api.java.en.When("^Select Facebook option and switch window$")
