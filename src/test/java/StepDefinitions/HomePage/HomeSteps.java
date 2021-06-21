@@ -5,18 +5,27 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 public class HomeSteps {
-    HomePage homePage = new HomePage();
-    PricingPage pricingPage = new PricingPage();
-    HowItWorksPage howItWorksPage = new HowItWorksPage();
-    FaqPage faqPage = new FaqPage();
-    SampleLessonPage sampleLessonPage = new SampleLessonPage();
-    TutorsPage tutorsPage = new TutorsPage();
-    BlogPage blogPage= new BlogPage();
-    CompaniesPage companiesPage = new CompaniesPage();
 
+    private final HomePage homePage;
+    private final PricingPage pricingPage;
+    private final HowItWorksPage howItWorksPage;
+    private final FaqPage faqPage;
+    private final SampleLessonPage sampleLessonPage;
+    private final TutorsPage tutorsPage;
+    private final BlogPage blogPage;
+    private final CompaniesPage companiesPage;
 
+    public HomeSteps(HomePage homePage, PricingPage pricingPage, HowItWorksPage howItWorksPage, FaqPage faqPage, SampleLessonPage sampleLessonPage, TutorsPage tutorsPage, BlogPage blogPage, CompaniesPage companiesPage) {
+        this.homePage = homePage;
+        this.pricingPage = pricingPage;
+        this.howItWorksPage = howItWorksPage;
+        this.faqPage = faqPage;
+        this.sampleLessonPage = sampleLessonPage;
+        this.tutorsPage = tutorsPage;
+        this.blogPage = blogPage;
+        this.companiesPage = companiesPage;
+    }
 
-    // TODO Bu yapı doğru değil. Loose Coupling için "Bağımlılık enjeksiyonu" kullanmak gerekiyor...
 
     @When("^Click Create Free Account Buttons$")
     public void clickCreateFreeAccountButtons() {

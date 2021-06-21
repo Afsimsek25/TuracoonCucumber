@@ -10,12 +10,18 @@ import org.testng.Assert;
 import java.util.Set;
 
 public class LoginsSteps {
-    LoginRegisterPopUp login = new LoginRegisterPopUp();
-    HomePage homePage= new HomePage();
-
-
-    WebDriverWait wait = new WebDriverWait(BaseDriver.getDriver(),20);
+    WebDriverWait wait= new WebDriverWait(BaseDriver.getDriver(),20);
     String loginPageID;
+
+    private final LoginRegisterPopUp login;
+    private final HomePage homePage;
+
+    public LoginsSteps(LoginRegisterPopUp login, HomePage homePage) {
+        this.login = login;
+        this.homePage = homePage;
+    }
+
+
 
     @cucumber.api.java.en.Given("^Navigate to turacoon$")
     public void navigateToTuracoon() {

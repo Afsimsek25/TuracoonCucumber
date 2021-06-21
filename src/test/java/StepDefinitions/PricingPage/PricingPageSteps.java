@@ -18,12 +18,21 @@ import org.testng.Assert;
 public class PricingPageSteps {
 
     WebDriverWait wait = new WebDriverWait(BaseDriver.getDriver(), 60);
-    HomePage homePage = new HomePage();
-    LoginRegisterPopUp loginRegisterPopUp = new LoginRegisterPopUp();
-    PaymentPage paymentPage = new PaymentPage();
     String firstPrice;
 
-    PricingPage pricingPage = new PricingPage();
+    private final HomePage homePage;
+    private final LoginRegisterPopUp loginRegisterPopUp;
+    private final PaymentPage paymentPage;
+    private final PricingPage pricingPage;
+
+    public PricingPageSteps(HomePage homePage, LoginRegisterPopUp loginRegisterPopUp, PaymentPage paymentPage, PricingPage pricingPage) {
+        this.homePage = homePage;
+        this.loginRegisterPopUp = loginRegisterPopUp;
+        this.paymentPage = paymentPage;
+        this.pricingPage = pricingPage;
+    }
+
+
 
     @When("^Go to Pricing Page$")
     public void go_to_Pricing_Page() {
