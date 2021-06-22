@@ -1,12 +1,13 @@
-package Pages;
+package Pages.OutsidePages;
 
+import Pages.Parent;
 import Utilities.BaseDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
-public class PaymentPage extends Parent{
+public class PaymentPage extends Parent {
     public PaymentPage(){
         PageFactory.initElements(BaseDriver.getDriver(), this);
     }
@@ -38,7 +39,41 @@ public class PaymentPage extends Parent{
     private WebElement inputCity;
     @FindBy(css = "div[class='addressInformations'] select[name='issuerCountry']")
     private Select selectCountry;
+    @FindBy(css = ".message")
+    private WebElement promoCodeMessage;
+    @FindBy(css = "div[class='promoCode']")
+    private WebElement buttonDoYouHavePromoCode;
+    @FindBy(name = "promotionCode")
+    private WebElement inputPromoCode;
+    @FindBy(css = "span[class='applyCode']")
+    private WebElement buttonApplyPromoCode;
+    @FindBy(css = "div[class='upgrade']")
+    private WebElement buttonUpgrade;
+    @FindBy(css = ".message")
+    private WebElement upgradeMessage;
 
+    public WebElement getUpgradeMessage() {
+        return upgradeMessage;
+    }
+
+    public WebElement getButtonUpgrade() {
+        return buttonUpgrade;
+    }
+
+    public WebElement getButtonApplyPromoCode() {
+        return buttonApplyPromoCode;
+    }
+
+    public WebElement getInputPromoCode() {
+        return inputPromoCode;
+    }
+    public WebElement getButtonDoYouHavePromoCode() {
+        return buttonDoYouHavePromoCode;
+    }
+
+    public WebElement getPromoCodeMessage() {
+        return promoCodeMessage;
+    }
 
     public WebElement getInputBillingAddress() {
         return inputBillingAddress;

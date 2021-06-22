@@ -3,7 +3,9 @@ package Pages;
 import Utilities.BaseDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -42,7 +44,12 @@ public class Parent {
     }
 
     public void scrollToElement(WebElement element) {
-        js.executeScript("arguments[0].scrollIntoView(true);", element);
+        js.executeScript("arguments[0].scrollIntoView();", element);
+    }
+
+    public void scrollToUpElement(WebElement element) {
+        js.executeScript("arguments[0].setAttribute('style', 'top:0px')", element);
+        js.executeScript("arguments[0].scrollIntoView();", element);
     }
 
     public void waitUntilVisible(WebElement element) {
@@ -58,8 +65,7 @@ public class Parent {
         wait.until(ExpectedConditions.visibilityOf(webElement));
         Assert.assertTrue(webElement.isDisplayed());
     }
-
-    public static void delay(int second) // Be careful! Using Thread.sleep is the wrong approach! **/
+    public static void delay(int second) // Be careful! Using Thread.sleep is the wrong approach!
     {
         try {
             Thread.sleep(1000L * second);
@@ -82,5 +88,16 @@ public class Parent {
         wait.until(ExpectedConditions.visibilityOfAllElements(element));
         wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(By.xpath(locator), piece));
     }
+
+    public void listSelectOption(List<WebElement> list, String option) // will click on the desired element from the list
+    {
+        for (WebElement e : list) {
+            if (e.getText().contains(option)) {
+                e.click();
+                break;
+            }
+        }
+    }
+
 
 }

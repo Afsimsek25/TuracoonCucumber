@@ -19,6 +19,8 @@ public class BaseDriver {
             WebDriverManager.chromedriver().setup();
             driver = new ChromeDriver();
             driver.manage().window().maximize();
+            driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         }
         return driver;
     }
@@ -29,6 +31,8 @@ public class BaseDriver {
             WebDriverManager.chromedriver().setup();
             driver2 = new ChromeDriver();
             driver2.manage().window().maximize();
+            driver2.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
+            driver2.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         }
         return driver2;
     }

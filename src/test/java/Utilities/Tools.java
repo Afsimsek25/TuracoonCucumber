@@ -1,22 +1,14 @@
 package Utilities;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.ArrayList;
-import java.util.List;
-
 
 public class Tools extends BaseDriver {
-        public static WebDriver driver;
-
-
         public static void wait(int second) {
             try {
                 Thread.sleep(second * 1000L);
@@ -78,64 +70,10 @@ public class Tools extends BaseDriver {
 
         }
 
-        public static List<String> testCards(String type){
-            List<String> stripeTestCards = new ArrayList<>();
-            List<String> iyzicoTestCards = new ArrayList<>();
-
-            stripeTestCards.add("4242424242424242");
-            stripeTestCards.add("4000056655665556");
-            stripeTestCards.add("5555555555554444");
-            stripeTestCards.add("2223003122003222");
-            stripeTestCards.add("5200828282828210");
-            stripeTestCards.add("5105105105105100");
-            stripeTestCards.add("6011111111111117");
-            stripeTestCards.add("6011000990139424");
-            stripeTestCards.add("4000000000003055");
-            stripeTestCards.add("3566002020360505");
-
-            iyzicoTestCards.add("5890040000000016");
-            iyzicoTestCards.add("5526080000000006");
-            iyzicoTestCards.add("4766620000000001");
-            iyzicoTestCards.add("4603450000000000");
-            iyzicoTestCards.add("4987490000000002");
-            iyzicoTestCards.add("5311570000000005");
-            iyzicoTestCards.add("9792020000000001");
-            iyzicoTestCards.add("9792030000000000");
-            iyzicoTestCards.add("5170410000000004");
-            iyzicoTestCards.add("5400360000000003");
-
-            if (type.equals("iyzico")){
-                return iyzicoTestCards;
-            }else{
-                return stripeTestCards;
-            }
-
-        }
         public static double replacePrice(String price){
             return Double.parseDouble(price.replaceAll("[^a-zA-Z0-9.]",""));
         }
 
-        public static void WaitForPageLoad(WebDriver driver)
-        {
-            waitForDocumentLoad(driver);
-            waitForAjaxLoad(driver);
-            waitForDocumentLoad(driver);
-        }
 
-        private static void waitForDocumentLoad(WebDriver driver)
-        {
-            WebDriverWait wait = new WebDriverWait(driver, 30);
-            wait.until(new ExpectedCondition<Boolean>() {
-                public Boolean apply(WebDriver driver) {
-                    return ((JavascriptExecutor) driver).executeScript("return  document.readyState").equals("complete");}});
-        }
-
-        private static void waitForAjaxLoad(WebDriver driver)
-        {
-            WebDriverWait wait = new WebDriverWait(driver, 30);
-            wait.until(new ExpectedCondition<Boolean>() {
-                public Boolean apply(WebDriver driver) {
-                    return driver.findElements(By.cssSelector(".waiting, .tb-loading")).size() == 0;}});
-        }
 
 }

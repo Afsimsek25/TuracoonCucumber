@@ -1,5 +1,6 @@
-package Pages;
+package Pages.OutsidePages;
 
+import Pages.Parent;
 import Utilities.BaseDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -7,7 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
-public class BlogPage extends Parent{
+public class BlogPage extends Parent {
 
     public BlogPage(){
         PageFactory.initElements(BaseDriver.getDriver(), this);

@@ -1,4 +1,4 @@
-package Pages;
+package Pages.OutsidePages;
 
 import Utilities.BaseDriver;
 import org.openqa.selenium.WebElement;
@@ -7,14 +7,14 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
-public class FaqPage extends Parent{
-    public FaqPage(){
+public class HowItWorksPage {
+    public HowItWorksPage(){
         PageFactory.initElements(BaseDriver.getDriver(), this);
     }
-    @FindBy(css = "div[data-category='Lessons']")
-    private List<WebElement> howLessonsList;
+    @FindBy(css = "div[class='content-header']")
+    private List<WebElement> contentHeaders;
 
-    public List<WebElement> getHowLessonsList() {
-        return howLessonsList;
+    public List<WebElement> getContentHeaders() {
+        return contentHeaders;
     }
 }

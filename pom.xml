@@ -34,7 +34,7 @@
             <version>7.1.0</version>
             <scope>test</scope>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager   WEBDRIVER-->
+        <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager   WebDriver-->
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
@@ -47,6 +47,8 @@
             <version>1.7.21</version>
             <scope>test</scope>
         </dependency>
+
+        <!--for dependency injection    -->
         <dependency>
             <groupId>info.cukes</groupId>
             <artifactId>cucumber-picocontainer</artifactId>

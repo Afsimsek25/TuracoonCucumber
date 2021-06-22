@@ -1,11 +1,13 @@
 package StepDefinitions.PricingPage;
 
-import Pages.HomePage;
-import Pages.LoginRegisterPopUp;
-import Pages.PaymentPage;
-import Pages.PricingPage;
+import Pages.OutsidePages.HomePage;
+import Pages.OutsidePages.LoginRegisterPopUp;
+import Pages.OutsidePages.PaymentPage;
+import Pages.OutsidePages.PricingPage;
+import Pages.Parent;
 import Utilities.BaseDriver;
 import Utilities.Tools;
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.By;
@@ -31,7 +33,6 @@ public class PricingPageSteps {
         this.paymentPage = paymentPage;
         this.pricingPage = pricingPage;
     }
-
 
 
     @When("^Go to Pricing Page$")
@@ -79,13 +80,14 @@ public class PricingPageSteps {
             paymentPage.sendKeysFunction(paymentPage.getInputZipCode(), "25800");
             paymentPage.sendKeysFunction(paymentPage.getInputCity(), "Erzurum");
         }
-
         paymentPage.clickFunction(paymentPage.getButtonPay());
-
     }
 
     @Then("^Verify Iyzico Purchase Success Message$")
     public void verify_Iyzico_Purchase_Success_Message() { //TODO refactor here
+
+        //div[class='successIcon'] i[class='fas fa-check-circle']  // success message locator
+
         if (BaseDriver.getDriver().getCurrentUrl().equals("https://sandbox-api.iyzipay.com/payment/mock/init3ds")) {
             System.out.println("SMS Doğrulaması Yapıldı");
             WebElement smsCode = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#smsCode.form-control")));
@@ -93,10 +95,9 @@ public class PricingPageSteps {
             WebElement btnSubmit = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[id='submitBtn'][type='submit']")));
             btnSubmit.click();
         } else {
-            Assert.assertEquals("https://tipbaks.com/en", BaseDriver.getDriver().getCurrentUrl());
+            paymentPage.verifyElement(homePage.getBtnCreateAFreeAccount());
             System.out.println("SMS Doğrulama Yapılmadı.");
         }
-
     }
 
     @When("^User enters the Stripe Card information and clicks the Buy Button$")
@@ -106,18 +107,14 @@ public class PricingPageSteps {
         paymentPage.sendKeysFunction(paymentPage.getInputMonth(), "12");
         paymentPage.sendKeysFunction(paymentPage.getInputYear(), "24");
         paymentPage.sendKeysFunction(paymentPage.getInputCvc(), "571");
-
         paymentPage.clickFunction(paymentPage.getButtonPay());
-
     }
 
     @Then("^Verify Stripe Purchase Success Message$")
     public void verify_Stripe_Purchase_Success_Message() {
         paymentPage.clickFunction(paymentPage.getAuthorizationFromStripe());
         paymentPage.verifyElement(paymentPage.getMessageSuccess());
-
     }
-
 
     @When("^User Select to Trial Pack$")
     public void userSelectToTrialPack() {
@@ -136,5 +133,57 @@ public class PricingPageSteps {
     @Then("^Delete the User$")
     public void deleteTheUser() {
         Tools.deleteUser("trialpurchase@test.com");
+    }
+
+    @And("^Change Form to login Enter username and password and click login button$")
+    public void changeFormToLoginEnterUsernameAndPasswordAndClickLoginButton() {
+        loginRegisterPopUp.clickFunction(loginRegisterPopUp.getChangeFormLogin());
+        loginRegisterPopUp.sendKeysFunction(loginRegisterPopUp.getInputLoginEmail(),"first@autotest.com");
+        loginRegisterPopUp.sendKeysFunction(loginRegisterPopUp.getInputLoginPassword(),"Asimsek25");
+        loginRegisterPopUp.clickFunction(loginRegisterPopUp.getButtonLogin());
+
+    }
+
+    @When("^User Enters The Incorrect Codes$")
+    public void userEntersTheIncorrectCodes() {
+        paymentPage.clickFunction(paymentPage.getButtonDoYouHavePromoCode());
+        paymentPage.sendKeysFunction(paymentPage.getInputPromoCode(),"FM181212");
+        paymentPage.clickFunction(paymentPage.getButtonApplyPromoCode());
+    }
+
+    @Then("^Verify Promo Code Success Message$")
+    public void verifyPromoCodeSuccessMessage() {
+        paymentPage.verifyElementContainsText(paymentPage.getPromoCodeMessage(), "Invalid Code");
+        paymentPage.verifyElementContainsText(BaseDriver.getDriver().findElement(By.cssSelector("div[class='price']")),"$82.50");
+    }
+
+    @When("^User Enters The Correct Promo Code$")
+    public void userEntersTheCorrectPromoCode() {
+        firstPrice=BaseDriver.getDriver().findElement(By.cssSelector("div[class='price']")).getText();
+        paymentPage.clickFunction(paymentPage.getButtonDoYouHavePromoCode());
+        paymentPage.sendKeysFunction(paymentPage.getInputPromoCode(),"BYIGIT5");
+        paymentPage.clickFunction(paymentPage.getButtonApplyPromoCode());
+    }
+
+    @Then("^Verify Promo Code Error Message$")
+    public void verifyPromoCodeErrorMessage() {
+        paymentPage.verifyElementContainsText(paymentPage.getPromoCodeMessage(), "Your Promo Code Applied Successfully!");
+        if (Tools.replacePrice(firstPrice)<=Tools.replacePrice(BaseDriver.getDriver().findElement(By.cssSelector("div[class='price']")).getText())){
+            Assert.fail();
+        }
+    }
+
+    @And("^User Click On The Upgrade Button$")
+    public void userClickOnTheUpgradeButton() {
+        firstPrice=BaseDriver.getDriver().findElement(By.cssSelector("div[class='price']")).getText();
+        paymentPage.clickFunction(paymentPage.getButtonUpgrade());
+    }
+
+    @Then("^Verify Price Offer Must Have Increased$")
+    public void verifyPriceOfferMustHaveIncreased() {
+        paymentPage.verifyElement(paymentPage.getUpgradeMessage());
+        if (Tools.replacePrice(firstPrice)>=Tools.replacePrice(BaseDriver.getDriver().findElement(By.cssSelector("div[class='price']")).getText())){
+            Assert.fail();
+        }
     }
 }

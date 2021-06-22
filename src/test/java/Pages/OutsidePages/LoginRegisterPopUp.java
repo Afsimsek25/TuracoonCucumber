@@ -1,11 +1,12 @@
-package Pages;
+package Pages.OutsidePages;
 
+import Pages.Parent;
 import Utilities.BaseDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class LoginRegisterPopUp extends Parent{
+public class LoginRegisterPopUp extends Parent {
 
     public LoginRegisterPopUp(){
         PageFactory.initElements(BaseDriver.getDriver(), this);
