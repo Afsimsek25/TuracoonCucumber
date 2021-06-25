@@ -34,6 +34,13 @@
             <version>7.1.0</version>
             <scope>test</scope>
         </dependency>
+        <!-- For Runner Class -->
+        <dependency>
+            <groupId>info.cukes</groupId>
+            <artifactId>cucumber-testng</artifactId>
+            <version>1.2.5</version>
+            <scope>test</scope>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager   WebDriver-->
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
@@ -47,7 +54,6 @@
             <version>1.7.21</version>
             <scope>test</scope>
         </dependency>
-
         <!--for dependency injection    -->
         <dependency>
             <groupId>info.cukes</groupId>
@@ -55,7 +61,6 @@
             <version>1.2.5</version>
             <scope>test</scope>
         </dependency>
-
     </dependencies>
 
 </project>
