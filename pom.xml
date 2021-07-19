@@ -12,6 +12,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+
     </properties>
 
     <dependencies>
@@ -61,6 +62,22 @@
             <version>1.2.5</version>
             <scope>test</scope>
         </dependency>
+
+        <!--for extend report    -->
+
+        <dependency>
+            <groupId>com.aventstack</groupId>
+            <artifactId>extentreports</artifactId>
+            <version>3.0.6</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.vimalselvam</groupId>
+            <artifactId>cucumber-extentsreport</artifactId>
+            <version>3.0.2</version>
+        </dependency>
+
+
     </dependencies>
 
 </project>
