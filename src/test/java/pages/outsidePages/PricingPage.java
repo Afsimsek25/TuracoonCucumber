@@ -1,4 +1,4 @@
-package pages.OutsidePages;
+package pages.outsidePages;
 
 import pages.Parent;
 import utils.BaseDriver;
@@ -13,7 +13,7 @@ public class PricingPage extends Parent {
         PageFactory.initElements(BaseDriver.getDriver(), this);
     }
 
-    @FindBy(css = "div[class='start ']")
+    @FindBy(css = "div[class*='start ']")
     private List<WebElement> getStartsButtons;
     @FindBy(css = "div[class='bottom'] i[class='fas fa-chevron-down']")
     private WebElement buttonCustomize;

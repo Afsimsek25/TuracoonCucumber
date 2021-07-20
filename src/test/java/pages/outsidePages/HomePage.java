@@ -1,4 +1,4 @@
-package pages.OutsidePages;
+package pages.outsidePages;
 
 import pages.Parent;
 import utils.BaseDriver;
@@ -11,24 +11,26 @@ public class HomePage extends Parent {
         PageFactory.initElements(BaseDriver.getDriver(), this);
     }
 
-    @FindBy(css = "a[class='auth-option trc_ViewConent'][data-trc*='Login']")
+    @FindBy(css = "div[class='auth-options'] a[href*='login']")
     private WebElement linkLogin;
-    @FindBy(css = "a[class='auth-option trc_ViewConent'][data-trc*='Register']")
+    @FindBy(css = "div[class='auth-options'] a[href*='logout']")
+    private WebElement linkLogout;
+    @FindBy(css = "div[class='auth-options'] a[href*='register']")
     private WebElement linkSignup;
 
-    @FindBy(css = "a[href*='register'][data-trc='Subscription Page']")
+    @FindBy(css = "div[class='learn-turkish-card'] a")
     private WebElement btnCreateAFreeAccount;
     @FindBy(css = "div[class='right registerRight  ']")
     private WebElement registerForm;
-    @FindBy(css = "div[class='topbar d-none d-sm-block'] div[class='dropdown text-center']")
+    @FindBy(css = "span.d-none")
     private WebElement languageSelector;
-    @FindBy(css = "div[class='topbar d-none d-sm-block'] div[class='dropdown text-center'] a[href*='tr']")
+    @FindBy(css = "a[class='dropdown-item'][href*='tr']")
     private WebElement btnTurkish;
-    @FindBy(css = "div[class='topbar d-none d-sm-block'] div[class='dropdown text-center'] a[href*='en']")
+    @FindBy(css = "a[class='dropdown-item'][href*='en']")
     private WebElement btnEnglish;
-    @FindBy(css = "div[class='topbar d-none d-sm-block'] div[class='dropdown text-center'] a[href*='ar']")
+    @FindBy(css = "a[class='dropdown-item'][href*='ar']")
     private WebElement btnArabic;
-    @FindBy(css = "div[class='topbar d-none d-sm-block'] div[class='dropdown text-center'] a[href*='ir']")
+    @FindBy(css = "a[class='dropdown-item'][href*='ir']")
     private WebElement btnFarsi;
 
     @FindBy(linkText = "Pricing")
@@ -51,6 +53,10 @@ public class HomePage extends Parent {
 
     @FindBy(linkText = "Companies")
     private WebElement btnCompanies;
+
+    public WebElement getLinkLogout() {
+        return linkLogout;
+    }
 
     public WebElement getLinkLogin() {
         return linkLogin;

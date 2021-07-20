@@ -38,7 +38,7 @@ public class Parent {
     }
 
     public void waitUntilClickable(WebElement element) {
-        wait.until(ExpectedConditions.visibilityOf(element));
+        wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
     public void scrollToElement(WebElement element) {

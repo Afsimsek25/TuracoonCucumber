@@ -1,4 +1,4 @@
-package pages.OutsidePages;
+package pages.outsidePages;
 
 import pages.Parent;
 import utils.BaseDriver;

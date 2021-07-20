@@ -1,0 +1,19 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="suit1" parallel="tests" thread-count="2">
+
+<!--    <test name="Smoke Tests">-->
+<!--        <parameter name="browser" value="firefox"></parameter>-->
+<!--        <classes>-->
+<!--            <class name="runners.SmokeRunner"></class>-->
+<!--        </classes>-->
+<!--    </test>-->
+
+    <test name="Regression Tests ">
+        <parameter name="browser" value="chrome"></parameter>
+        <classes>
+            <class name="runners.RegressionRunner"></class>
+        </classes>
+    </test>
+
+</suite>

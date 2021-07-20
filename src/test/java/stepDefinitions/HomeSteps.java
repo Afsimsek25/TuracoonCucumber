@@ -1,6 +1,6 @@
 package stepDefinitions;
 
-import pages.OutsidePages.*;
+import pages.outsidePages.*;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 

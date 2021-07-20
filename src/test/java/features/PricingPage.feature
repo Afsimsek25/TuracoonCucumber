@@ -35,6 +35,7 @@ Feature: Pricing Page Tests
     When Fill Register Form and click Register button
     When User enters the Iyzico Card information and clicks the Buy Button
     Then Verify Iyzico Purchase Success Message
+    Then User should be logout
     Then Delete the User
 
   @Regression
@@ -56,12 +57,6 @@ Feature: Pricing Page Tests
     When Enter username and password and click login button
     And User Click On The Upgrade Button
     Then Verify Price Offer Must Have Increased
-
-#  Scenario: Other Payment Options
-#    When User Click on the element in Pricing Page
-#      | getStart1 |
-#
-#  Scenario: Paypal Payments
 
 
 

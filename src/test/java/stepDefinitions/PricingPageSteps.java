@@ -1,9 +1,9 @@
 package stepDefinitions;
 
-import pages.OutsidePages.HomePage;
-import pages.OutsidePages.LoginRegisterPopUp;
-import pages.OutsidePages.PaymentPage;
-import pages.OutsidePages.PricingPage;
+import pages.outsidePages.HomePage;
+import pages.outsidePages.LoginRegisterPopUp;
+import pages.outsidePages.PaymentPage;
+import pages.outsidePages.PricingPage;
 import utils.BaseDriver;
 import utils.Tools;
 import cucumber.api.java.en.And;
@@ -73,7 +73,7 @@ public class PricingPageSteps {
         paymentPage.sendKeysFunction(paymentPage.getInputNameOnCard(), "Automatic Purchase Iyzico");
         paymentPage.sendKeysFunction(paymentPage.getInputCardNumber(), "5890 0400 0000 0016");
         paymentPage.sendKeysFunction(paymentPage.getInputMonth(), "12");
-        paymentPage.sendKeysFunction(paymentPage.getInputYear(), "21");
+        paymentPage.sendKeysFunction(paymentPage.getInputYear(), "24");
         paymentPage.sendKeysFunction(paymentPage.getInputCvc(), "001");
 
         if (paymentPage.getInputBillingAddress().isDisplayed()) {
@@ -87,14 +87,13 @@ public class PricingPageSteps {
     @Then("^Verify Iyzico Purchase Success Message$")
     public void verify_Iyzico_Purchase_Success_Message() { //TODO refactor here
 
-        //div[class='successIcon'] i[class='fas fa-check-circle']  // success message locator
-
         if (BaseDriver.getDriver().getCurrentUrl().equals("https://sandbox-api.iyzipay.com/payment/mock/init3ds")) {
             System.out.println("SMS Doğrulaması Yapıldı");
             WebElement smsCode = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#smsCode.form-control")));
             smsCode.sendKeys("283126");
             WebElement btnSubmit = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[id='submitBtn'][type='submit']")));
             btnSubmit.click();
+            BaseDriver.getDriver().get("https://tipbaks.com/en");
         } else {
             paymentPage.verifyElement(homePage.getBtnCreateAFreeAccount());
             System.out.println("SMS Doğrulama Yapılmadı.");
@@ -133,6 +132,7 @@ public class PricingPageSteps {
 
     @Then("^Delete the User$")
     public void deleteTheUser() {
+
         Tools.deleteUser("trialpurchase@test.com");
     }
 
@@ -155,7 +155,7 @@ public class PricingPageSteps {
     @Then("^Verify Promo Code Success Message$")
     public void verifyPromoCodeSuccessMessage() {
         paymentPage.verifyElementContainsText(paymentPage.getPromoCodeMessage(), "Invalid Code");
-        paymentPage.verifyElementContainsText(BaseDriver.getDriver().findElement(By.cssSelector("div[class='price']")),"$82.50");
+        paymentPage.verifyElementContainsText(BaseDriver.getDriver().findElement(By.cssSelector("div[class='price']")),"$99.90");
     }
 
     @When("^User Enters The Correct Promo Code$")
@@ -193,5 +193,9 @@ public class PricingPageSteps {
 
     }
 
+    @Then("^User should be logout$")
+    public void userShouldBeLogout() {
+        homePage.clickFunction(homePage.getLinkLogout());
+    }
 }
 

@@ -1,48 +1,45 @@
 package utils;
 
-import pages.Parent;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-
-import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class BaseDriver {
-    public static WebDriver driver;
-    public static WebDriver driver2;
 
-    public static WebDriver getDriver()
-    {
-        if (driver==null)
-        {
-            WebDriverManager.chromedriver().setup();
-            driver = new ChromeDriver();
-            driver.manage().window().maximize();
-            driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
-            driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+    private static ThreadLocal<WebDriver> threadDriver = new ThreadLocal<>();
+    public static ThreadLocal<String> threadBrowserName = new ThreadLocal<>();
+
+    public static WebDriver getDriver() {
+
+        if (threadBrowserName.get() == null) {
+            threadBrowserName.set("chrome");
         }
-        return driver;
+
+        if (threadDriver.get() == null) {
+
+            switch (threadBrowserName.get()) {
+                case "chrome":
+                    WebDriverManager.chromedriver().setup();
+                    threadDriver.set(new ChromeDriver());
+                    break;
+                case "firefox":
+                    WebDriverManager.firefoxdriver().setup();
+                    threadDriver.set(new FirefoxDriver());
+                    break;
+            }
+        }
+
+        return threadDriver.get();
     }
-    public static WebDriver getSecondDriver()
-    {
-        if (driver2==null)
-        {
-            WebDriverManager.chromedriver().setup();
-            driver2 = new ChromeDriver();
-            driver2.manage().window().maximize();
-            driver2.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
-            driver2.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+
+    public static void DriverQuit() {
+
+        if (threadDriver.get() != null) {
+            threadDriver.get().quit();
+            WebDriver driver = threadDriver.get();
+            driver = null;
+            threadDriver.set(driver);
         }
-        return driver2;
-    }
-
-
-    public static void DriverQuit(){
-        Parent.delay(1);
-        if (driver!=null){
-            driver.quit();
-            driver=null;
-        }
-
     }
 }

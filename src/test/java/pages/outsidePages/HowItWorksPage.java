@@ -1,4 +1,4 @@
-package pages.OutsidePages;
+package pages.outsidePages;
 
 import utils.BaseDriver;
 import org.openqa.selenium.WebElement;

@@ -1,9 +1,9 @@
 package stepDefinitions;
 
-import pages.OutsidePages.HomePage;
-import pages.OutsidePages.LoginRegisterPopUp;
+import pages.insidePages.DashboardPage;
+import pages.outsidePages.HomePage;
+import pages.outsidePages.LoginRegisterPopUp;
 import utils.BaseDriver;
-import org.openqa.selenium.By;
 
 
 public class LoginsSteps {
@@ -11,14 +11,17 @@ public class LoginsSteps {
 
     private final LoginRegisterPopUp loginRegisterPopUp;
     private final HomePage homePage;
+    private final DashboardPage dashboardPage;
 
-    public LoginsSteps(LoginRegisterPopUp login, HomePage homePage) {
+    public LoginsSteps(LoginRegisterPopUp login, HomePage homePage, DashboardPage dashboardPage) {
         this.loginRegisterPopUp = login;
         this.homePage = homePage;
+        this.dashboardPage=dashboardPage;
     }
     @cucumber.api.java.en.Given("^Navigate to turacoon$")
     public void navigateToTuracoon() {
-        BaseDriver.driver.get("https://tipbaks.com/en");
+        BaseDriver.getDriver().get("https://tipbaks.com/en");
+        BaseDriver.getDriver().manage().window().maximize();
     }
 
     @cucumber.api.java.en.When("^Go to login page$")
@@ -34,7 +37,7 @@ public class LoginsSteps {
     }
     @cucumber.api.java.en.Then("^User should login successfully$")
     public void userShouldLoginSuccessfully() {
-       loginRegisterPopUp.verifyElementContainsText(BaseDriver.getDriver().findElement(By.cssSelector(".subscribe_button")),"Upgrade Subscription");
+        dashboardPage.verifyElement(dashboardPage.getTextUpcomingLesson());
     }
     @cucumber.api.java.en.When("^Select Facebook option and switch window$")
     public void selectFacebookOptionAndSwitchWindow() {
