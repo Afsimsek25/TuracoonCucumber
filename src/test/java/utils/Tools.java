@@ -6,7 +6,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 
-public class Tools extends BaseDriver {
+public class Tools extends SingletonDriver {
         public static void wait(int second) {
             try {
                 Thread.sleep(second * 1000L);
@@ -53,7 +53,7 @@ public class Tools extends BaseDriver {
         }
 
         public static void adminPanelLogin(){
-            BaseDriver.getSecondDriver();
+            SingletonDriver.getSecondDriver();
             driver2.navigate().to("https://tipbaks.com/");
 
             WebElement linkLogin = driver2.findElement(By.linkText("Login"));

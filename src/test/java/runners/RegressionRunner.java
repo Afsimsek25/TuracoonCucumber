@@ -4,11 +4,12 @@ import com.cucumber.listener.Reporter;
 import cucumber.api.CucumberOptions;
 import cucumber.api.testng.AbstractTestNGCucumberTests;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
+import utils.BaseDriver;
 
 
 @CucumberOptions(
-
-
         tags = {"@Regression"},
         features = {"src/test/java/features"},
         glue = {"stepDefinitions"},
@@ -17,6 +18,12 @@ import org.testng.annotations.AfterClass;
 
 )
 public class RegressionRunner extends AbstractTestNGCucumberTests {
+
+    @BeforeClass
+    @Parameters("browser")
+    public void beforeClass(String browser) {
+        BaseDriver.threadBrowserName.set(browser);
+    }
 
     @AfterClass
     public static void afterClass() {
