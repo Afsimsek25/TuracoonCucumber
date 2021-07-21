@@ -1,13 +1,19 @@
 package utils;
 
-import pages.Parent;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import pages.Parent;
 
 import java.util.concurrent.TimeUnit;
 
-public class BaseDriver {
+public class SingletonDriver {
+    /**
+     *  Interview Sorusu
+     *              Singleton driver nedir?
+     *      Bütün projede aynı ve tek bir driverın kullanılmasıdır.
+     */
+
     public static WebDriver driver;
     public static WebDriver driver2;
 

@@ -17,30 +17,30 @@ public class Tools extends BaseDriver {
         }
         public static void deleteUser (String email){
             adminPanelLogin();
-            getDriver().navigate().to("https://tipbaks.com/admin/students");
-            WebElement searchTable = getDriver().findElement(By.id("searchtable"));
+            driver2.navigate().to("https://tipbaks.com/admin/students");
+            WebElement searchTable = driver2.findElement(By.id("searchtable"));
             searchTable.sendKeys(email);
 
-            WebElement btnDelete = getDriver().findElement(By.cssSelector("tr:not([style='display: none;']) button[onclick^='delete']"));
+            WebElement btnDelete = driver2.findElement(By.cssSelector("tr:not([style='display: none;']) button[onclick^='delete']"));
             btnDelete.click();
-            WebElement confirm = getDriver().findElement(By.cssSelector("button[class='swal-button swal-button--confirm swal-button--danger']"));
+            WebElement confirm = driver2.findElement(By.cssSelector("button[class='swal-button swal-button--confirm swal-button--danger']"));
             confirm.click();
 
-            getDriver().close();
+            driver2.close();
         }
 
 
         public static void deleteUserProvider (String email){
             adminPanelLogin();
-            getDriver().navigate().to("https://tipbaks.com/admin/students");
+            driver2.navigate().to("https://tipbaks.com/admin/students");
             Tools.wait(1);
-            WebDriverWait wait=new WebDriverWait(getDriver(), 60);
+            WebDriverWait wait=new WebDriverWait(driver2, 60);
             WebElement searchTable=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("searchtable")));
             searchTable.sendKeys(email);
 
 
-            WebElement deleteProvider = getDriver().findElement(By.id("delete_student_from_social_provider_button"));
-            JavascriptExecutor js = (JavascriptExecutor)getDriver();
+            WebElement deleteProvider = driver2.findElement(By.id("delete_student_from_social_provider_button"));
+            JavascriptExecutor js = (JavascriptExecutor)driver2;
             js.executeScript("arguments[0].click();", deleteProvider);
 
             WebElement btnDelete=wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("tr:not([style='display: none;']) button[onclick^='delete']")));
@@ -49,26 +49,20 @@ public class Tools extends BaseDriver {
             WebElement confirm=wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[class='swal-button swal-button--confirm swal-button--danger']")));
             confirm.click();
 
-            getDriver().close();
+            driver2.close();
         }
 
         public static void adminPanelLogin(){
+            BaseDriver.getSecondDriver();
+            driver2.navigate().to("https://tipbaks.com/");
 
-            BaseDriver.getDriver().get("https://tipbaks.com/en");
-
-            try {
-                Thread.sleep(5000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
-            WebElement linkLogin = getDriver().findElement(By.cssSelector("div[class='auth-options'] a[href*='login']"));
+            WebElement linkLogin = driver2.findElement(By.linkText("Login"));
             linkLogin.click();
-            WebElement inputEmail = getDriver().findElement(By.id("email"));
+            WebElement inputEmail = driver2.findElement(By.id("email"));
             inputEmail.sendKeys("manager2020@turacoon.com");
-            WebElement inputPassword = getDriver().findElement(By.id("password"));
+            WebElement inputPassword = driver2.findElement(By.id("password"));
             inputPassword.sendKeys("2018Turacoon");
-            WebElement btnLogin = getDriver().findElement(By.id("loginBtn"));
+            WebElement btnLogin = driver2.findElement(By.id("loginBtn"));
             btnLogin.click();
             Tools.wait(3);
 
